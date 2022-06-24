@@ -73,6 +73,66 @@ public class ModalidadeDAO extends Conexao {
 		return listaModalidades;
 	}
 	
+	public Modalidade getModalidade(int id) {
+		conectar();
+		
+		Modalidade modalidade = new Modalidade();
+		String sql = "SELECT * FROM modalidades WHERE id = '"+ id +"'";
+		PreparedStatement preparedStatement = criarPreparedStatement(sql);
+		
+		try {
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				modalidade.setId(resultSet.getInt("id"));
+				modalidade.setNome(resultSet.getString("nome"));
+				modalidade.setValor(resultSet.getDouble("valor"));
+				modalidade.setIdinstrutor(resultSet.getInt("instrutor_id"));
+				
+				desconectar();
+				
+				return modalidade;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			preparedStatement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		desconectar();
+		
+		return null;
+	}
+	
+	public boolean editarModalidade(Modalidade modalidade) {
+		conectar();
+		
+		String sql = "UPDATE modalidades SET nome = '" + modalidade.getNome() + "', valor = '"
+				+ modalidade.getValor() + "', instrutor_id = '"+ modalidade.getIdinstrutor() +"' WHERE id = '" + modalidade.getId() + "'";
+		PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		
+		try {
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		try {
+			preparedStatement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		desconectar();
+		
+		return true;
+	}
+	
 	public boolean removerModalidade(int id) {
 		conectar();
 		

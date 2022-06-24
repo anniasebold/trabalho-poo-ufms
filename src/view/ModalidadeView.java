@@ -45,6 +45,7 @@ public class ModalidadeView extends JPanel {
 	ArrayList<Modalidade> listaModalidades = new ArrayList<>();
 	private InstrutorDAO instrutorDAO = new InstrutorDAO();
 	private ModalidadeDAO modalidadeDAO = new ModalidadeDAO();
+	private boolean cadastro = true;
 
 	public ModalidadeView() {
 		prepararJanela();
@@ -155,17 +156,35 @@ public class ModalidadeView extends JPanel {
 				modalidade.setIdinstrutor(idInstrutor);
 				modalidade.setNome(nome);
 				modalidade.setValor(valor);
-				
-				if(modalidadeDAO.salvarModalidade(modalidade, idInstrutor)) {
-					inputNome.setText("");
-					inputValor.setText("");
-					inputIdInstrutor.setText("");
-					
-					carregarListaModalidades();
-					
-					JOptionPane.showMessageDialog(this, "Modalidade cadastrada com sucesso.");
+			
+				if(cadastro) {
+					if(modalidadeDAO.salvarModalidade(modalidade, idInstrutor)) {
+						inputNome.setText("");
+						inputValor.setText("");
+						inputIdInstrutor.setText("");
+						
+						carregarListaModalidades();
+						
+						JOptionPane.showMessageDialog(this, "Modalidade cadastrada com sucesso.");
+					} else {
+						JOptionPane.showMessageDialog(this, "Erro ao cadastrar modalidade.", "Erro", JOptionPane.ERROR_MESSAGE);
+					}
 				} else {
-					JOptionPane.showMessageDialog(this, "Erro ao cadastrar modalidade.", "Erro", JOptionPane.ERROR_MESSAGE);
+					int idModalidade = Integer.parseInt(inputID.getText());
+					modalidade.setId(idModalidade);
+					
+					
+					if(modalidadeDAO.editarModalidade(modalidade)) {
+						inputID.setText("");
+						inputNome.setText("");
+						inputValor.setText("");
+						inputIdInstrutor.setText("");
+						
+						carregarListaModalidades();
+						JOptionPane.showMessageDialog(this, "Modalidade editada com sucesso.");
+					} else {
+						JOptionPane.showMessageDialog(this, "Erro ao editar Instrutor.", "Erro", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 				
 			} else {
@@ -175,7 +194,24 @@ public class ModalidadeView extends JPanel {
 		});
 		
 		editar.addActionListener((event) -> {
+			cadastro = false;
+			int linhaSelecionada = tabelaModalidades.getSelectedRow();
+			Modalidade modalidadeCarregada = new Modalidade();
 			
+			if (linhaSelecionada != -1) {
+				int idModalidade = (int) tabelaModalidades.getValueAt(linhaSelecionada, 0);
+
+				modalidadeCarregada = modalidadeDAO.getModalidade(idModalidade);
+				
+				inputID.setText(String.valueOf(modalidadeCarregada.getId()));
+				inputNome.setText(modalidadeCarregada.getNome());
+				inputValor.setText(String.valueOf(modalidadeCarregada.getValor()));
+				inputIdInstrutor.setText(String.valueOf(modalidadeCarregada.getIdinstrutor()));
+
+			} else {
+				JOptionPane.showMessageDialog(this, "Selecione uma modalidade para ser editada.", "Erro",
+						JOptionPane.ERROR_MESSAGE);
+			}
 		});
 
 		excluir.addActionListener((event) -> {	

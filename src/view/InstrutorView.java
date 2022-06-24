@@ -144,8 +144,8 @@ public class InstrutorView extends JPanel {
 				inputFormacao.setText("");
 			} else {
 
-				int id = Integer.parseInt(inputId.getText());
-				instrutor.setId(id);
+				int idInstrutor = Integer.parseInt(inputId.getText());
+				instrutor.setId(idInstrutor);
 
 				if (instrutorDAO.editarInstrutor(instrutor)) {
 					JOptionPane.showMessageDialog(this, "Instrutor editado com sucesso.");
