@@ -2,12 +2,12 @@ package model;
 
 public class Aluno extends Entidade {
 	private int idade;
-	private String objetivo;
+	private int idModalidade;
+	private int idInstrutor;
 
-	public Aluno(int id, String nome, int idade, String objetivo) {
+	public Aluno(int id, String nome, int idade) {
 		super(id, nome);
 		setIdade(idade);
-		setObjetivo(objetivo);
 	}
 
 	public int getIdade() {
@@ -18,12 +18,21 @@ public class Aluno extends Entidade {
 		this.idade = idade;
 	}
 
-	public String getObjetivo() {
-		return objetivo;
+	public int getIdModalidade() {
+		return idModalidade;
 	}
 
-	public void setObjetivo(String objetivo) {
-		this.objetivo = objetivo;
+	public void setIdModalidade(int idModalidade) {
+		this.idModalidade = idModalidade;
 	}
 
+	public int getIdInstrutor() {
+		return idInstrutor;
+	}
+
+	public void setIdInstrutor(int idInstrutor) {
+		this.idInstrutor = idInstrutor;
+	}
+	
+	
 }

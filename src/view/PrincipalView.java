@@ -1,6 +1,5 @@
 package view;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -44,7 +43,7 @@ public class PrincipalView extends JFrame {
 
 	private void prepararJanela() {
 		setTitle("GymFit");
-		setSize(750, 850);
+		setSize(700, 850);
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(this);

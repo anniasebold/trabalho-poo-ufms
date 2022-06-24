@@ -20,18 +20,17 @@ public class AlunoView extends JPanel {
 	private JLabel titulo;
 	private JLabel nome;
 	private JLabel idade;
-	private JLabel objetivo;
+	private JLabel ID;
 	private JTextField inputNome;
 	private JTextField inputIdade;
-	private JTextField inputObjetivo;
+	private JTextField inputID;
 	private JButton salvar;
 	private JButton editar;
 	private JButton excluir;
-	private JButton selecionarLinha;
 
 	private JTable tabelaAlunos = new JTable();
 
-	String colunas[] = { "Nome", "Idade", "Objetivo" };
+	String colunas[] = { "ID", "Nome", "Idade", "Modalidade", "Instrutor"};
 	DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
 
 	public AlunoView() {
@@ -53,64 +52,59 @@ public class AlunoView extends JPanel {
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		add(titulo, gbc);
+		
+		ID = new JLabel("ID ");
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		add(ID, gbc);
+
+		inputID = new JTextField(30);
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		add(inputID, gbc);
+		inputID.setEditable(false);
 
 		nome = new JLabel("Nome ");
 		gbc.gridx = 0;
-		gbc.gridy = 1;
+		gbc.gridy = 2;
 		add(nome, gbc);
 
 		inputNome = new JTextField(30);
 		gbc.gridx = 1;
-		gbc.gridy = 1;
+		gbc.gridy = 2;
 		add(inputNome, gbc);
 
 		idade = new JLabel("Idade ");
 		gbc.gridx = 0;
-		gbc.gridy = 2;
+		gbc.gridy = 3;
 		add(idade, gbc);
 
 		inputIdade = new JTextField(30);
 		gbc.gridx = 1;
-		gbc.gridy = 2;
+		gbc.gridy = 3;
 		add(inputIdade, gbc);
-
-		objetivo = new JLabel("Objetivo ");
-		gbc.gridx = 0;
-		gbc.gridy = 3;
-		add(objetivo, gbc);
-
-		inputObjetivo = new JTextField(30);
-		gbc.gridx = 1;
-		gbc.gridy = 3;
-		add(inputObjetivo, gbc);
 
 		salvar = new JButton("Salvar");
 		gbc.gridx = 1;
 		gbc.gridy = 4;
 		add(salvar, gbc);
 
-		selecionarLinha = new JButton("Selecionar Registro");
-		gbc.gridx = 1;
-		gbc.gridy = 5;
-		add(selecionarLinha, gbc);
-
-		editar = new JButton("Editar");
-		gbc.gridx = 1;
-		gbc.gridy = 6;
-		add(editar, gbc);
-		editar.setVisible(false);
-
-		excluir = new JButton("Excluir");
-		gbc.gridx = 1;
-		gbc.gridy = 7;
-		add(excluir, gbc);
-
 		tabelaAlunos.setModel(modelo);
 		tabelaAlunos.setVisible(true);
 
 		gbc.gridx = 1;
-		gbc.gridy = 9;
+		gbc.gridy = 5;
 		add(new JScrollPane(tabelaAlunos), gbc);
+		
+		editar = new JButton("Editar");
+		gbc.gridx = 1;
+		gbc.gridy = 6;
+		add(editar, gbc);
+		
+		excluir = new JButton("Excluir");
+		gbc.gridx = 1;
+		gbc.gridy = 7;
+		add(excluir, gbc);
 
 	}
 	
@@ -118,67 +112,19 @@ public class AlunoView extends JPanel {
 		salvar.addActionListener((event) -> {
 			String nome = inputNome.getText();
 			int idade = Integer.parseInt(inputIdade.getText());
-			String objetivo = inputObjetivo.getText();
-
-//			Aluno aluno = new Aluno(nome, idade, objetivo);
-//			listaAlunos.adicionar(aluno);
 
 			inputNome.setText("");
 			inputIdade.setText("");
-			inputObjetivo.setText("");
 			modelo.setRowCount(0);
 
-//			for (int i = 0; i < listaAlunos.getSize(); i++) {
-//				Object[] lista = { 
-//						listaAlunos.getOne(i).getNome(), 
-//						listaAlunos.getOne(i).getIdade(), 
-//						listaAlunos.getOne(i).getObjetivo(), 
-//				};
-//
-//				modelo.addRow(lista);
-//			}
-		});
-
-		selecionarLinha.addActionListener((event) -> {
-			int linhaSelecionada = tabelaAlunos.getSelectedRow();
-			if (linhaSelecionada != -1) {
-				inputNome.setText(tabelaAlunos.getValueAt(linhaSelecionada, 0).toString());
-				inputIdade.setText(tabelaAlunos.getValueAt(linhaSelecionada, 1).toString());
-				inputObjetivo.setText(tabelaAlunos.getValueAt(linhaSelecionada, 2).toString());
-				editar.setVisible(true);
-			} else {
-				JOptionPane.showMessageDialog(null, "Selecione um aluno.");
-			}
 		});
 
 		editar.addActionListener((event) -> {
-			int linhaSelecionada = tabelaAlunos.getSelectedRow();
-
-			String nome = inputNome.getText();
-			int idade = Integer.parseInt(inputIdade.getText());
-			String objetivo = inputObjetivo.getText();
-//			Aluno alunoEditado = new Aluno(nome, idade, objetivo);
-
-			inputNome.setText("");
-			inputIdade.setText("");
-			inputObjetivo.setText("");
-
-//			listaAlunos.editRegister(linhaSelecionada, alunoEditado);
-
-			tabelaAlunos.setValueAt(nome, linhaSelecionada, 0);
-			tabelaAlunos.setValueAt(idade, linhaSelecionada, 1);
-			tabelaAlunos.setValueAt(objetivo, linhaSelecionada, 2);
 
 		});
 
 		excluir.addActionListener((event) -> {
-			int linhaSelecionada = tabelaAlunos.getSelectedRow();
-			if (linhaSelecionada != -1) {
-//				listaAlunos.removeRegister(linhaSelecionada);
-//				modelo.removeRow(linhaSelecionada);
-			} else {
-				JOptionPane.showMessageDialog(null, "Selecione um aluno para ser excluído.");
-			}
+			
 		});
 		
 	}

@@ -35,11 +35,10 @@ public class ModalidadeView extends JPanel {
 	private JButton salvar;
 	private JButton editar;
 	private JButton excluir;
-	private JButton selecionarLinha;
 
 	private JTable tabelaModalidades = new JTable();
 	
-	String colunas[] = { "ID", "Nome", "Valor", "Nome Instrutor" };
+	String colunas[] = { "ID", "Nome", "Valor", "Instrutor" };
 	DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
 	
 	ArrayList<Modalidade> listaModalidades = new ArrayList<>();
