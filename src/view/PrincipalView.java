@@ -8,9 +8,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import controller.InstrutorListagem;
-import controller.ModalidadeListagem;
-
 import java.awt.BorderLayout;
 
 import connection.Conexao;

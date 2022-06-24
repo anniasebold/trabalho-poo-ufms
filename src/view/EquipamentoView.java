@@ -15,7 +15,6 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import DAO.EquipamentoDAO;
-import controller.EquipamentoListagem;
 import model.Equipamento;
 
 public class EquipamentoView extends JPanel {

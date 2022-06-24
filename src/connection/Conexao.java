@@ -13,7 +13,7 @@ public class Conexao {
 	public boolean conectar() {
 		
 		try {
-			String url = "jdbc:sqlite:/home/anniasebold/Desktop/UFMS/sqlite-tools-linux-x86-3380500/GymFit.db";
+			String url = "jdbc:sqlite:/home/anniasebold/Desktop/UFMS/TRABALHO-PRATICO/GymFit/database/GymFit.db";
 			
 			this.conexao = DriverManager.getConnection(url);
 			System.out.println("Conectado ao banco de dados.");

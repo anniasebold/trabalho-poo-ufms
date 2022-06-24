@@ -15,7 +15,6 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import DAO.InstrutorDAO;
-import controller.InstrutorListagem;
 import model.Instrutor;
 
 public class InstrutorView extends JPanel {

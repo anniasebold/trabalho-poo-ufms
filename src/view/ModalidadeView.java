@@ -18,8 +18,6 @@ import javax.swing.table.DefaultTableModel;
 
 import DAO.InstrutorDAO;
 import DAO.ModalidadeDAO;
-import controller.InstrutorListagem;
-import controller.ModalidadeListagem;
 import model.Instrutor;
 import model.Modalidade;
 
