@@ -13,7 +13,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import controller.AlunoListagem;
 import model.Aluno;
 
 public class AlunoView extends JPanel {
@@ -31,7 +30,6 @@ public class AlunoView extends JPanel {
 	private JButton selecionarLinha;
 
 	private JTable tabelaAlunos = new JTable();
-	AlunoListagem listaAlunos = new AlunoListagem();
 
 	String colunas[] = { "Nome", "Idade", "Objetivo" };
 	DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
@@ -40,7 +38,6 @@ public class AlunoView extends JPanel {
 		prepararJanela();
 		organizarComponentes();
 		organizarEventos();
-//		finalizar();
 	}
 
 	public void prepararJanela() {
@@ -131,15 +128,15 @@ public class AlunoView extends JPanel {
 			inputObjetivo.setText("");
 			modelo.setRowCount(0);
 
-			for (int i = 0; i < listaAlunos.getSize(); i++) {
-				Object[] lista = { 
-						listaAlunos.getOne(i).getNome(), 
-						listaAlunos.getOne(i).getIdade(), 
-						listaAlunos.getOne(i).getObjetivo(), 
-				};
-
-				modelo.addRow(lista);
-			}
+//			for (int i = 0; i < listaAlunos.getSize(); i++) {
+//				Object[] lista = { 
+//						listaAlunos.getOne(i).getNome(), 
+//						listaAlunos.getOne(i).getIdade(), 
+//						listaAlunos.getOne(i).getObjetivo(), 
+//				};
+//
+//				modelo.addRow(lista);
+//			}
 		});
 
 		selecionarLinha.addActionListener((event) -> {
@@ -177,16 +174,12 @@ public class AlunoView extends JPanel {
 		excluir.addActionListener((event) -> {
 			int linhaSelecionada = tabelaAlunos.getSelectedRow();
 			if (linhaSelecionada != -1) {
-				listaAlunos.removeRegister(linhaSelecionada);
-				modelo.removeRow(linhaSelecionada);
+//				listaAlunos.removeRegister(linhaSelecionada);
+//				modelo.removeRow(linhaSelecionada);
 			} else {
 				JOptionPane.showMessageDialog(null, "Selecione um aluno para ser excluído.");
 			}
 		});
 		
-	}
-
-	private void finalizar() {
-		setVisible(true);
 	}
 }
