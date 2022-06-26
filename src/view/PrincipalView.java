@@ -24,11 +24,13 @@ public class PrincipalView extends JFrame {
 	private JMenuItem opcoesInstrutor;
 	private JMenu sair;
 	private JMenuItem exit;
+	private JMenuItem opcoesModEqu;
 	private JPanel telaSelecionada;
 	private JMenuBar barraRodape;
 	private JLabel status;
 	
 	ModalidadeView modalidadeView = new ModalidadeView();
+	ModEquView modEquView = new ModEquView();
 	AlunoView alunoView = new AlunoView();
 	InstrutorView instrutorView = new InstrutorView();
 	EquipamentoView equipamentoView = new EquipamentoView();
@@ -51,16 +53,24 @@ public class PrincipalView extends JFrame {
 
 	private void organizarComponentes() {
 		barraTopo = new JMenuBar();
+		
 		modalidade = new JMenu("Modalidade");
 		opcoesModalidade = new JMenuItem("Menu");
+		
 		aluno = new JMenu("Aluno");
 		opcoesAluno = new JMenuItem("Menu");
+		
 		equipamento = new JMenu("Equipamento");
 		opcoesEquipamento = new JMenuItem("Menu");
+		
 		instrutor = new JMenu("Instrutor");
 		opcoesInstrutor = new JMenuItem("Menu");
+		
+		opcoesModEqu = new JMenuItem("Equipamento por Modalidade");
+		
 		sair = new JMenu("Sair");
 		exit = new JMenuItem("Exit");
+		
 		telaSelecionada = new JPanel();
 		barraRodape = new JMenuBar();
 		status = new JLabel("Status: ");
@@ -71,12 +81,17 @@ public class PrincipalView extends JFrame {
 		add(barraTopo, BorderLayout.PAGE_START);
 		barraTopo.add(modalidade);
 		modalidade.add(opcoesModalidade);
+		modalidade.add(opcoesModEqu);
+		
 		barraTopo.add(aluno);
 		aluno.add(opcoesAluno);
+		
 		barraTopo.add(equipamento);
 		equipamento.add(opcoesEquipamento);
+		
 		barraTopo.add(instrutor);
 		instrutor.add(opcoesInstrutor);
+		
 		barraTopo.add(sair);
 		sair.add(exit);
 
@@ -91,14 +106,25 @@ public class PrincipalView extends JFrame {
 			alunoView.setVisible(false);
 			instrutorView.setVisible(false);
 			equipamentoView.setVisible(false);
+			modEquView.setVisible(false);
 			telaSelecionada.add(modalidadeView);
 			modalidadeView.setVisible(true);
+		});
+		
+		opcoesModEqu.addActionListener((event) -> {
+			alunoView.setVisible(false);
+			instrutorView.setVisible(false);
+			equipamentoView.setVisible(false);
+			modalidadeView.setVisible(false);
+			telaSelecionada.add(modEquView);
+			modEquView.setVisible(true);
 		});
 
 		opcoesAluno.addActionListener((event) -> {
 			modalidadeView.setVisible(false);
 			instrutorView.setVisible(false);
 			equipamentoView.setVisible(false);
+			modEquView.setVisible(false);
 			telaSelecionada.add(alunoView);
 			alunoView.setVisible(true);
 		});
@@ -107,6 +133,7 @@ public class PrincipalView extends JFrame {
 			modalidadeView.setVisible(false);
 			alunoView.setVisible(false);
 			equipamentoView.setVisible(false);
+			modEquView.setVisible(false);
 			telaSelecionada.add(instrutorView);
 			instrutorView.setVisible(true);
 		});
@@ -115,6 +142,7 @@ public class PrincipalView extends JFrame {
 			modalidadeView.setVisible(false);
 			alunoView.setVisible(false);
 			instrutorView.setVisible(false);
+			modEquView.setVisible(false);
 			telaSelecionada.add(equipamentoView);
 			equipamentoView.setVisible(true);
 		});

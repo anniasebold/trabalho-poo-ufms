@@ -86,6 +86,10 @@ public class EquipamentoDAO extends Conexao {
 				equipamento.setNome(resultSet.getString("nome"));
 				equipamento.setMusculoTrab(resultSet.getString("musc_trabalhado"));
 				equipamento.setEstado(resultSet.getString("estado"));
+				
+				desconectar();
+				
+				return equipamento;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -99,7 +103,7 @@ public class EquipamentoDAO extends Conexao {
 
 		desconectar();
 
-		return equipamento;
+		return null;
 	}
 
 	public boolean editarEquipamento(Equipamento equipamento) {

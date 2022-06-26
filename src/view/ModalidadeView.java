@@ -137,7 +137,7 @@ public class ModalidadeView extends JPanel {
 		
 		salvar.addActionListener((event) -> {
 			if (inputNome.getText().isEmpty() || inputValor.getText().isEmpty() || inputIdInstrutor.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "Preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			
