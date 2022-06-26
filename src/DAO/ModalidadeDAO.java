@@ -12,7 +12,7 @@ import model.Modalidade;
 
 public class ModalidadeDAO extends Conexao {
 	
-	public boolean salvarModalidade(Modalidade modalidade, int idInstrutor) {
+	public boolean salvarModalidade(Modalidade modalidade) {
 		conectar();
 		String sql = "INSERT INTO modalidades (nome, valor, instrutor_id) VALUES  (?, ?, ?)";
 		PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);

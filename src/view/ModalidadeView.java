@@ -26,7 +26,7 @@ public class ModalidadeView extends JPanel {
 	private JLabel titulo;
 	private JLabel nome;
 	private JLabel valor;
-	private JLabel IdInstrutor;
+	private JLabel idInstrutor;
 	private JLabel ID;
 	private JTextField inputNome;
 	private JTextField inputValor;
@@ -98,10 +98,10 @@ public class ModalidadeView extends JPanel {
 		gbc.gridy = 3;
 		add(inputValor, gbc);
 
-		IdInstrutor = new JLabel("ID Instrutor ");
+		idInstrutor = new JLabel("ID Instrutor ");
 		gbc.gridx = 0;
 		gbc.gridy = 4;
-		add(IdInstrutor, gbc);
+		add(idInstrutor, gbc);
 
 		inputIdInstrutor = new JTextField(30);
 		gbc.gridx = 1;
@@ -147,24 +147,21 @@ public class ModalidadeView extends JPanel {
 			double valor = Double.parseDouble(inputValor.getText());
 			int idInstrutor = Integer.parseInt(inputIdInstrutor.getText());
 			
-			Instrutor instrutorCarregado = new Instrutor();
+			Instrutor instrutorCarregado = instrutorDAO.getInstrutor(idInstrutor);
 			
-			instrutorCarregado = instrutorDAO.getInstrutor(idInstrutor);
-			
-			if(instrutorDAO.getInstrutor(idInstrutor) != null) {
+			if(instrutorCarregado != null) {
 				modalidade.setIdinstrutor(idInstrutor);
 				modalidade.setNome(nome);
 				modalidade.setValor(valor);
 			
 				if(cadastro) {
-					if(modalidadeDAO.salvarModalidade(modalidade, idInstrutor)) {
+					if(modalidadeDAO.salvarModalidade(modalidade)) {
 						inputNome.setText("");
 						inputValor.setText("");
 						inputIdInstrutor.setText("");
 						
-						carregarListaModalidades();
-						
 						JOptionPane.showMessageDialog(this, "Modalidade cadastrada com sucesso.");
+						carregarListaModalidades();
 					} else {
 						JOptionPane.showMessageDialog(this, "Erro ao cadastrar modalidade.", "Erro", JOptionPane.ERROR_MESSAGE);
 					}
@@ -174,13 +171,16 @@ public class ModalidadeView extends JPanel {
 					
 					
 					if(modalidadeDAO.editarModalidade(modalidade)) {
+						JOptionPane.showMessageDialog(this, "Modalidade editada com sucesso.");
+						carregarListaModalidades();
+						
+						
 						inputID.setText("");
 						inputNome.setText("");
 						inputValor.setText("");
 						inputIdInstrutor.setText("");
 						
-						carregarListaModalidades();
-						JOptionPane.showMessageDialog(this, "Modalidade editada com sucesso.");
+						cadastro = true;
 					} else {
 						JOptionPane.showMessageDialog(this, "Erro ao editar Instrutor.", "Erro", JOptionPane.ERROR_MESSAGE);
 					}
@@ -220,8 +220,8 @@ public class ModalidadeView extends JPanel {
 				int idModalidade = (int) tabelaModalidades.getValueAt(linhaSelecionada, 0);
 				
 				if(modalidadeDAO.removerModalidade(idModalidade)) {
-					carregarListaModalidades();
 					JOptionPane.showMessageDialog(this, "Modalidade excluída com sucesso.");
+					carregarListaModalidades();
 				} else {
 					JOptionPane.showMessageDialog(this, "Erro ao excluir modalidade.", "Erro", JOptionPane.ERROR_MESSAGE);
 				}

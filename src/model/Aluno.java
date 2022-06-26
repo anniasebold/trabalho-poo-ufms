@@ -4,6 +4,12 @@ public class Aluno extends Entidade {
 	private int idade;
 	private int idModalidade;
 	private int idInstrutor;
+	private String nomeModalidade;
+	private String nomeInstrutor;
+	
+	public Aluno() {
+		super();
+	}
 
 	public Aluno(int id, String nome, int idade) {
 		super(id, nome);
@@ -33,6 +39,23 @@ public class Aluno extends Entidade {
 	public void setIdInstrutor(int idInstrutor) {
 		this.idInstrutor = idInstrutor;
 	}
+
+	public String getNomeModalidade() {
+		return nomeModalidade;
+	}
+
+	public void setNomeModalidade(String nomeModalidade) {
+		this.nomeModalidade = nomeModalidade;
+	}
+
+	public String getNomeInstrutor() {
+		return nomeInstrutor;
+	}
+
+	public void setNomeInstrutor(String nomeInstrutor) {
+		this.nomeInstrutor = nomeInstrutor;
+	}
+	
 	
 	
 }

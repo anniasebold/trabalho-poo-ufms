@@ -149,11 +149,12 @@ public class InstrutorView extends JPanel {
 
 				if (instrutorDAO.editarInstrutor(instrutor)) {
 					JOptionPane.showMessageDialog(this, "Instrutor editado com sucesso.");
+					carregarListaInstrutores();
+					
+					cadastro = true;
 				} else {
 					JOptionPane.showMessageDialog(this, "Erro ao editar Instrutor.", "Erro", JOptionPane.ERROR_MESSAGE);
 				}
-
-				carregarListaInstrutores();
 
 				inputId.setText("");
 				inputNome.setText("");
