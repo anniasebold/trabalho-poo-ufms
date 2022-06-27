@@ -156,4 +156,33 @@ public class ModalidadeDAO extends Conexao {
 		
 		return true;
 	}
+	
+	public boolean verificaRelacaoInstrutorMod(int idInstrutor) {
+		conectar();
+		
+		String sql = "SELECT id FROM modalidades WHERE instrutor_id = '"+idInstrutor+"'";
+		PreparedStatement preparedStatement = criarPreparedStatement(sql);
+		
+		try {
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			preparedStatement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		desconectar();
+		
+		return false;
+	}
 }
