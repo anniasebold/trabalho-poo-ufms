@@ -56,7 +56,7 @@ public class EquipamentoView extends JPanel {
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.insets = new Insets(5, 5, 5, 5);
 
-		titulo = new JLabel("Menu de Equipamento");
+		titulo = new JLabel("Menu de Equipamentos");
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		add(titulo, gbc);
