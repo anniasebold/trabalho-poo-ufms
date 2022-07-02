@@ -23,7 +23,7 @@ public class PrincipalView extends JFrame {
 	private JMenu instrutor;
 	private JMenuItem opcoesInstrutor;
 	private JMenu sair;
-	private JMenuItem exit;
+	private JMenuItem sairSistema;
 	private JMenuItem opcoesModEqu;
 	private JPanel telaSelecionada;
 	
@@ -67,7 +67,7 @@ public class PrincipalView extends JFrame {
 		opcoesModEqu = new JMenuItem("Equipamento por Modalidade");
 		
 		sair = new JMenu("Sair");
-		exit = new JMenuItem("Exit");
+		sairSistema = new JMenuItem("Sair do sistema");
 		
 		telaSelecionada = new JPanel();
 
@@ -88,7 +88,7 @@ public class PrincipalView extends JFrame {
 		instrutor.add(opcoesInstrutor);
 		
 		barraTopo.add(sair);
-		sair.add(exit);
+		sair.add(sairSistema);
 
 		add(telaSelecionada);
 	}
@@ -139,7 +139,7 @@ public class PrincipalView extends JFrame {
 			equipamentoView.setVisible(true);
 		});
 
-		exit.addActionListener((event) -> {
+		sairSistema.addActionListener((event) -> {
 			System.exit(0);
 		});
 	}
