@@ -31,6 +31,8 @@ public class EquipamentoView extends JPanel {
 	private JButton salvar;
 	private JButton editar;
 	private JButton excluir;
+	private JLabel status;
+	private JLabel statusText;
 
 	private JTable tabelaEquipamentos = new JTable();
 	
@@ -122,6 +124,16 @@ public class EquipamentoView extends JPanel {
 		gbc.gridx = 1;
 		gbc.gridy = 8;
 		add(excluir, gbc);
+		
+		status = new JLabel("Status: ");
+		gbc.gridx = 0;
+		gbc.gridy = 9;
+		add(status, gbc);
+		
+		statusText = new JLabel("Listando Equipamentos");
+		gbc.gridx = 1;
+		gbc.gridy = 9;
+		add(statusText, gbc);
 
 	}
 	
@@ -143,6 +155,9 @@ public class EquipamentoView extends JPanel {
 			equipamento.setEstado(estado);
 			
 			if(cadastro) {
+				statusText.setText("");
+				statusText.setText("Cadastrando Equipamento");
+				
 				if(equipamentoDAO.salvarEquipamento(equipamento)) {
 					JOptionPane.showMessageDialog(this, "Equipamento cadastrado com sucesso.");
 				} else {
@@ -189,6 +204,9 @@ public class EquipamentoView extends JPanel {
 				inputMusculoTrab.setText(equipamentoCarregado.getMusculoTrab());
 				inputEstado.setText(equipamentoCarregado.getEstado());
 				
+				statusText.setText("");
+				statusText.setText("Editando Equipamento");
+				
 			} else {
 				JOptionPane.showMessageDialog(this, "Selecione um equipamento para ser editado.", "Erro", JOptionPane.ERROR_MESSAGE);
 			}
@@ -201,6 +219,9 @@ public class EquipamentoView extends JPanel {
 			
 			if (linhaSelecionada != -1) {
 				int idEquipamento = (int) tabelaEquipamentos.getValueAt(linhaSelecionada, 0);
+				
+				statusText.setText("");
+				statusText.setText("Excluindo Equipamento");
 				
 				if(equipamentoDAO.removerEquipamento(idEquipamento)) {
 					

@@ -28,6 +28,8 @@ public class InstrutorView extends JPanel {
 	private JButton salvar;
 	private JButton editar;
 	private JButton excluir;
+	private JLabel status;
+	private JLabel statusText;
 
 	private JTable tabelaInstrutores = new JTable();
 
@@ -112,6 +114,16 @@ public class InstrutorView extends JPanel {
 		gbc.gridx = 1;
 		gbc.gridy = 7;
 		add(excluir, gbc);
+		
+		status = new JLabel("Status: ");
+		gbc.gridx = 0;
+		gbc.gridy = 8;
+		add(status, gbc);
+		
+		statusText = new JLabel("Listando Instrutores");
+		gbc.gridx = 1;
+		gbc.gridy = 8;
+		add(statusText, gbc);
 
 	}
 
@@ -132,6 +144,10 @@ public class InstrutorView extends JPanel {
 			instrutor.setFormacao(formacao);
 
 			if (cadastro) {
+				
+				statusText.setText("");
+				statusText.setText("Cadastrando Instrutor");
+				
 				if (instrutorDAO.salvarInstrutor(instrutor)) {
 					JOptionPane.showMessageDialog(this, "Instrutor cadastrado com sucesso.");
 				} else {
@@ -177,6 +193,9 @@ public class InstrutorView extends JPanel {
 				inputId.setText(String.valueOf(instrutorCarregado.getId()));
 				inputNome.setText(instrutorCarregado.getNome());
 				inputFormacao.setText(instrutorCarregado.getFormacao());
+				
+				statusText.setText("");
+				statusText.setText("Editando Instrutor");
 
 			} else {
 				JOptionPane.showMessageDialog(this, "Selecione um instrutor para ser editado.", "Erro",
@@ -199,6 +218,9 @@ public class InstrutorView extends JPanel {
 					JOptionPane.showMessageDialog(this, "Erro ao excluir instrutor.", "Erro",
 							JOptionPane.ERROR_MESSAGE);
 				}
+				
+				statusText.setText("");
+				statusText.setText("Excluindo Instrutor");
 			} else {
 				JOptionPane.showMessageDialog(this, "Selecione um instrutor para ser excluído.", "Erro",
 						JOptionPane.ERROR_MESSAGE);
@@ -210,7 +232,6 @@ public class InstrutorView extends JPanel {
 	private void carregarListaInstrutores() {
 		listaInstrutores = instrutorDAO.listarInstrutores();
 
-		// Limpa a tabela antes de carregar os usuários
 		modelo.setRowCount(0);
 
 		for (int i = 0; i < listaInstrutores.size(); i++) {

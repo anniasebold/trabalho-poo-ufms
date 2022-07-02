@@ -37,6 +37,8 @@ public class AlunoView extends JPanel {
 	private JButton salvar;
 	private JButton editar;
 	private JButton excluir;
+	private JLabel status;
+	private JLabel statusText;
 
 	private JTable tabelaAlunos = new JTable();
 
@@ -143,6 +145,16 @@ public class AlunoView extends JPanel {
 		gbc.gridx = 1;
 		gbc.gridy = 9;
 		add(excluir, gbc);
+		
+		status = new JLabel("Status: ");
+		gbc.gridx = 0;
+		gbc.gridy = 10;
+		add(status, gbc);
+		
+		statusText = new JLabel("Listando Alunos");
+		gbc.gridx = 1;
+		gbc.gridy = 10;
+		add(statusText, gbc);
 
 	}
 	
@@ -177,6 +189,10 @@ public class AlunoView extends JPanel {
 				aluno.setIdModalidade(idModalidade);
 				
 				if(cadastro) {
+					
+					statusText.setText("");
+					statusText.setText("Cadastrando Aluno");
+					
 					if(alunoDAO.salvarAluno(aluno)) {
 						inputNome.setText("");
 						inputIdade.setText("");
@@ -216,6 +232,10 @@ public class AlunoView extends JPanel {
 			Aluno alunoCarregado = new Aluno();
 			
 			if (linhaSelecionada != -1) {
+				
+				statusText.setText("");
+				statusText.setText("Editando Aluno");
+				
 				int idAluno = (int) tabelaAlunos.getValueAt(linhaSelecionada, 0);
 				
 				alunoCarregado = alunoDAO.getAluno(idAluno);
@@ -237,6 +257,10 @@ public class AlunoView extends JPanel {
 			int linhaSelecionada = tabelaAlunos.getSelectedRow();
 			
 			if (linhaSelecionada != -1) {
+				
+				statusText.setText("");
+				statusText.setText("Excluindo Aluno");
+				
 				int idAluno = (int) tabelaAlunos.getValueAt(linhaSelecionada, 0);
 				
 				if(alunoDAO.removerAluno(idAluno)) {

@@ -34,6 +34,8 @@ public class ModalidadeView extends JPanel {
 	private JButton salvar;
 	private JButton editar;
 	private JButton excluir;
+	private JLabel status;
+	private JLabel statusText;
 
 	private JTable tabelaModalidades = new JTable();
 
@@ -127,6 +129,16 @@ public class ModalidadeView extends JPanel {
 		gbc.gridx = 1;
 		gbc.gridy = 8;
 		add(excluir, gbc);
+		
+		status = new JLabel("Status: ");
+		gbc.gridx = 0;
+		gbc.gridy = 9;
+		add(status, gbc);
+		
+		statusText = new JLabel("Listando Modalidades");
+		gbc.gridx = 1;
+		gbc.gridy = 9;
+		add(statusText, gbc);
 
 	}
 
@@ -139,7 +151,7 @@ public class ModalidadeView extends JPanel {
 				JOptionPane.showMessageDialog(this, "Preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-
+			
 			Modalidade modalidade = new Modalidade();
 
 			String nome = inputNome.getText();
@@ -154,6 +166,10 @@ public class ModalidadeView extends JPanel {
 				modalidade.setValor(valor);
 
 				if (cadastro) {
+					
+					statusText.setText("");
+					statusText.setText("Cadastrando Modalidade");
+					
 					if (modalidadeDAO.verificaRelacaoInstrutorMod(idInstrutor)) {
 						JOptionPane.showMessageDialog(this, "O Instrutor inserido já está ligado a uma Modalidade.",
 								"Erro", JOptionPane.ERROR_MESSAGE);
@@ -211,6 +227,9 @@ public class ModalidadeView extends JPanel {
 				inputNome.setText(modalidadeCarregada.getNome());
 				inputValor.setText(String.valueOf(modalidadeCarregada.getValor()));
 				inputIdInstrutor.setText(String.valueOf(modalidadeCarregada.getIdinstrutor()));
+				
+				statusText.setText("");
+				statusText.setText("Editando Modalidade");
 
 			} else {
 				JOptionPane.showMessageDialog(this, "Selecione uma modalidade para ser editada.", "Erro",
@@ -227,6 +246,9 @@ public class ModalidadeView extends JPanel {
 				if (modalidadeDAO.removerModalidade(idModalidade)) {
 					JOptionPane.showMessageDialog(this, "Modalidade excluída com sucesso.");
 					carregarListaModalidades();
+					
+					statusText.setText("");
+					statusText.setText("Excluindo Modalidade");
 				} else {
 					JOptionPane.showMessageDialog(this, "Erro ao excluir modalidade.", "Erro",
 							JOptionPane.ERROR_MESSAGE);

@@ -31,6 +31,8 @@ public class ModEquView extends JPanel {
 	private JButton salvar;
 	private JButton editar;
 	private JButton excluir;
+	private JLabel status;
+	private JLabel statusText;
 
 	private JTable tabelaModEqu = new JTable();
 	
@@ -115,6 +117,16 @@ public class ModEquView extends JPanel {
 		gbc.gridx = 1;
 		gbc.gridy = 8;
 		add(excluir, gbc);
+		
+		status = new JLabel("Status: ");
+		gbc.gridx = 0;
+		gbc.gridy = 9;
+		add(status, gbc);
+		
+		statusText = new JLabel("Listando Equipamento por Modalidade");
+		gbc.gridx = 1;
+		gbc.gridy = 9;
+		add(statusText, gbc);
 
 	}
 	
@@ -140,6 +152,10 @@ public class ModEquView extends JPanel {
 				modEqu.setIdEquipamento(idEquipamento);
 				
 				if(cadastro) {
+					
+					statusText.setText("");
+					statusText.setText("Cadastrando Modalidade por Equipamento");
+					
 					if(modEquDAO.salvarModEqu(modEqu)) {
 						inputIdModalidade.setText("");
 						inputIdEquipamento.setText("");
@@ -178,6 +194,10 @@ public class ModEquView extends JPanel {
 			ModEqu modEqu = new ModEqu();
 			
 			if (linhaSelecionada != -1) {
+				
+				statusText.setText("");
+				statusText.setText("Editando Modalidade por Equipamento");
+				
 				int id = (int) tabelaModEqu.getValueAt(linhaSelecionada, 0);
 				
 				modEqu = modEquDAO.getModEqu(id);
@@ -195,6 +215,10 @@ public class ModEquView extends JPanel {
 			int linhaSelecionada = tabelaModEqu.getSelectedRow();
 			
 			if (linhaSelecionada != -1) {
+				
+				statusText.setText("");
+				statusText.setText("Excluindo Modalidade por Equipamento");
+				
 				int id = (int) tabelaModEqu.getValueAt(linhaSelecionada, 0);
 				
 				if(modEquDAO.removerModEqu(id)) {

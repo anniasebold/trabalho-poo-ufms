@@ -26,8 +26,6 @@ public class PrincipalView extends JFrame {
 	private JMenuItem exit;
 	private JMenuItem opcoesModEqu;
 	private JPanel telaSelecionada;
-	private JMenuBar barraRodape;
-	private JLabel status;
 	
 	ModalidadeView modalidadeView = new ModalidadeView();
 	ModEquView modEquView = new ModEquView();
@@ -72,11 +70,8 @@ public class PrincipalView extends JFrame {
 		exit = new JMenuItem("Exit");
 		
 		telaSelecionada = new JPanel();
-		barraRodape = new JMenuBar();
-		status = new JLabel("Status: ");
 
 		this.setJMenuBar(barraTopo);
-		this.setJMenuBar(barraRodape);
 
 		add(barraTopo, BorderLayout.PAGE_START);
 		barraTopo.add(modalidade);
@@ -96,9 +91,6 @@ public class PrincipalView extends JFrame {
 		sair.add(exit);
 
 		add(telaSelecionada);
-
-		add(barraRodape, BorderLayout.PAGE_END);
-		barraRodape.add(status);
 	}
 
 	private void organizarEventos() {
