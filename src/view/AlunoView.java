@@ -45,7 +45,7 @@ public class AlunoView extends JPanel {
 	String colunas[] = { "ID", "Nome", "Idade", "Instrutor", "Modalidade"};
 	DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
 	
-	ArrayList<Aluno> listaAlunos = new ArrayList<>();
+	ArrayList<Aluno> listaAlunos = new ArrayList<Aluno>();
 	private AlunoDAO alunoDAO = new AlunoDAO();
 	private InstrutorDAO instrutorDAO = new InstrutorDAO();
 	private ModalidadeDAO modalidadeDAO = new ModalidadeDAO();

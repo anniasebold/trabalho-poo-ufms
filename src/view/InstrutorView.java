@@ -33,7 +33,7 @@ public class InstrutorView extends JPanel {
 
 	private JTable tabelaInstrutores = new JTable();
 
-	ArrayList<Instrutor> listaInstrutores = new ArrayList<>();
+	ArrayList<Instrutor> listaInstrutores = new ArrayList<Instrutor>();
 	Instrutor instrutor = new Instrutor();
 	InstrutorDAO instrutorDAO = new InstrutorDAO();
 

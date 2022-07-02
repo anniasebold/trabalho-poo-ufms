@@ -36,7 +36,7 @@ public class ModEquView extends JPanel {
 
 	private JTable tabelaModEqu = new JTable();
 	
-	ArrayList<ModEqu> listaModEqu = new ArrayList<>();
+	ArrayList<ModEqu> listaModEqu = new ArrayList<ModEqu>();
 	EquipamentoDAO equipamentoDAO = new EquipamentoDAO();
 	ModalidadeDAO modalidadeDAO = new ModalidadeDAO();
 	ModEquDAO modEquDAO = new ModEquDAO();

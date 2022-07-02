@@ -42,7 +42,7 @@ public class ModalidadeView extends JPanel {
 	String colunas[] = { "ID", "Nome", "Valor", "Instrutor" };
 	DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
 
-	ArrayList<Modalidade> listaModalidades = new ArrayList<>();
+	ArrayList<Modalidade> listaModalidades = new ArrayList<Modalidade>();
 	private InstrutorDAO instrutorDAO = new InstrutorDAO();
 	private ModalidadeDAO modalidadeDAO = new ModalidadeDAO();
 	private boolean cadastro = true;
