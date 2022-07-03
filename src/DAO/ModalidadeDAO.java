@@ -167,8 +167,12 @@ public class ModalidadeDAO extends Conexao {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
 			if(resultSet.next()) {
+				desconectar();
+				
 				return true;
 			} else {
+				desconectar();
+				
 				return false;
 			}
 		} catch (SQLException e) {
